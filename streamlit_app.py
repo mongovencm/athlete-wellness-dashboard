@@ -16,6 +16,19 @@ def load_data(path):
     df["date"] = pd.to_datetime(df["date"])
     return df
 
+def normalize(df, columns):
+    normalized = df.copy()
+
+    for col in columns:
+        max_value = normalized[col].max()
+
+        if max_value > 0:
+            normalized[col] = (
+                normalized[col] / max_value
+            ) * 100
+
+    return normalized
+
 Files = {
     "Readiness": "data/processed/wellness/readiness.csv",
     "Fatigue": "data/processed/wellness/fatigue.csv",
@@ -43,7 +56,7 @@ metric = st.sidebar.selectbox(
 
 time_group = st.sidebar.selectbox(
     "Time Aggregation",
-    ["Daily", "Weekly", "Monthly"]
+    ["Monthly", "Weekly", "Daily"]
 )
 
 df = load_data(Files[metric])
@@ -65,7 +78,7 @@ end_date = df["date"].max().date()
 
 default_start = max(
     df["date"].min(),
-    df["date"].max() - pd.Timedelta(days=90)
+    df["date"].max() - pd.Timedelta(days=365)
 )
 
 date_range = st.sidebar.date_input(
@@ -378,22 +391,13 @@ load_injury_compare = monthly_load.merge(
 load_injury_compare = load_injury_compare.fillna(0)
 
 
-compare = load_injury_compare.copy()
-
-compare["daily_load"] = (
-    compare["daily_load"]
-    - compare["daily_load"].min()
-) / (
-    compare["daily_load"].max()
-    - compare["daily_load"].min()
+compare = normalize(
+    load_injury_compare,
+    ["daily_load", "injury_count"]
 )
 
-compare["injury_count"] = (
-    compare["injury_count"]
-    - compare["injury_count"].min()
-) / (
-    compare["injury_count"].max()
-    - compare["injury_count"].min()
+st.caption(
+    "Values are normalized to a percentage of each metric's maximum (0–100%) to compare trends across different scales."
 )
 
 st.line_chart(
@@ -509,22 +513,13 @@ st.caption(
     "Weekly average fatigue scores compared with average daily training load."
 )
 
-compare = fatigue_compare.copy()
-
-compare["daily_load"] = (
-    compare["daily_load"]
-    - compare["daily_load"].min()
-) / (
-    compare["daily_load"].max()
-    - compare["daily_load"].min()
+compare = normalize(
+    fatigue_compare,
+    ["daily_load", "fatigue"]
 )
 
-compare["fatigue"] = (
-    compare["fatigue"]
-    - compare["fatigue"].min()
-) / (
-    compare["fatigue"].max()
-    - compare["fatigue"].min()
+st.caption(
+    "Values are normalized to a percentage of each metric's maximum (0–100%) to compare trends across different scales."
 )
 
 st.line_chart(
@@ -602,22 +597,10 @@ sleep_compare = sleep_daily.merge(
     how="inner"
 )
 
-sleep_compare["Sleep Quality Trend"] = (
-    sleep_compare["sleep_quality"]
-    .rolling(4)
-    .mean()
-)
-
-sleep_compare["Fatigue Trend"] = (
-    sleep_compare["fatigue"]
-    .rolling(4)
-    .mean()
-)
-
-st.subheader("Average Sleep Quality vs Fatigue")
+st.subheader("Sleep Quality vs Fatigue")
 
 st.caption(
-    "Weekly averages comparing sleep quality and fatigue with four-week trend lines."
+    "Average sleep quality and fatigue scores over time."
 )
 
 st.line_chart(
@@ -669,24 +652,17 @@ readiness_compare = daily_load.merge(
     how="inner"
 )
 
-readiness_compare["Readiness Trend"] = (
-    readiness_compare["readiness"]
-    .rolling(4)
-    .mean()
+compare = normalize(
+    readiness_compare,
+    ["daily_load", "readiness"]
 )
 
-readiness_compare["Training Trend"] = (
-    readiness_compare["daily_load"]
-    .rolling(4)
-    .mean()
-)
-
-st.subheader("Average Readiness vs Daily Training Load")
+st.subheader("Normalized Readiness vs Training Load")
 
 st.caption(
-    "Weekly averages comparing athlete readiness with training load over time."
+    "Values are normalized to a percentage of each metric's maximum (0–100%) to compare trends across different scales."
 )
 
 st.line_chart(
-    readiness_compare.set_index("date")
+    compare.set_index("date")
 )
