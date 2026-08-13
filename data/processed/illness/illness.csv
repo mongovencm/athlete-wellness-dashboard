@@ -1,0 +1,16 @@
+player,symptoms,date
+TeamA-3e5f6e2b-46b7-4890-84a9-3bbb2649af5a,"[""nausea""]",2020-08-11
+TeamA-3e5f6e2b-46b7-4890-84a9-3bbb2649af5a,"[""headache"",""nausea"",""other""]",2021-01-04
+TeamA-3e5f6e2b-46b7-4890-84a9-3bbb2649af5a,"[""soar throat""]",2021-10-18
+TeamA-3e5f6e2b-46b7-4890-84a9-3bbb2649af5a,"[""headache"",""fever"",""soar throat"",""coughing""]",2021-10-20
+TeamA-3e5f6e2b-46b7-4890-84a9-3bbb2649af5a,"[""headache"",""coughing""]",2021-10-25
+TeamA-3e5f6e2b-46b7-4890-84a9-3bbb2649af5a,"[""headache"",""soar throat""]",2021-12-08
+TeamA-3e5f6e2b-46b7-4890-84a9-3bbb2649af5a,"[""headache"",""soar throat"",""other""]",2021-12-09
+TeamA-affd6f1d-b364-4700-98bf-8f20896e5ac4,"[""soar throat""]",2020-09-16
+TeamB-afc13e53-2c77-48cb-8a78-743663bbb84f,"[""soar throat""]",2021-10-25
+TeamB-afc13e53-2c77-48cb-8a78-743663bbb84f,"[""soar throat""]",2021-11-04
+TeamB-afc13e53-2c77-48cb-8a78-743663bbb84f,"[""soar throat"",""coughing""]",2021-11-09
+TeamB-afc13e53-2c77-48cb-8a78-743663bbb84f,"[""coughing""]",2021-11-10
+TeamB-f67673c0-d467-4832-9519-55133a2647e5,"[""headache"",""soar throat"",""coughing"",""nausea""]",2021-09-12
+TeamB-f67673c0-d467-4832-9519-55133a2647e5,"[""headache"",""soar throat"",""coughing"",""nausea""]",2021-09-13
+TeamB-f67673c0-d467-4832-9519-55133a2647e5,"[""headache"",""coughing""]",2021-09-14
