@@ -69,7 +69,7 @@ The dashboard includes comparisons between several datasets, including:
 - Sleep quality vs. fatigue
 - Training load vs. readiness
 
-Because these datasets use different scales, selected comparison charts use normalized values to allow their trends to be compared more effectively. The original data remains available through the dashboard's data tables and individual measurements.
+Because these datasets use different scales, selected comparison charts use normalized values to allow their trends to be compared more effectively.
 
 ## Technologies
 
@@ -78,12 +78,22 @@ Because these datasets use different scales, selected comparison charts use norm
 - **Streamlit**
 - **Git/GitHub**
 
+## Deployment
+
+The application is deployed using Streamlit Community Cloud.
+
+**Live Application:**  
+https://athlete-wellness-dashboard.streamlit.app
+
+**GitHub Repository:**  
+https://github.com/mongovencm/athlete-wellness-dashboard
+
 ## Project Structure
 
 ```text
 athlete-wellness-dashboard/
 │
-├── app.py
+├── streamlit_app.py
 ├── explore_data.py
 ├── requirements.txt
 ├── README.md
