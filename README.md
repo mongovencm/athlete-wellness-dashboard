@@ -10,6 +10,14 @@ The project also builds on my previous academic and professional background in E
 
 This project allowed me to explore the intersection of sports performance, healthcare, and technology while developing a portfolio quality software application.
 
+## Data Source
+
+The dashboard uses an athlete monitoring dataset published through Zenodo and described in the associated research article.
+
+- **Title:** A large-scale multivariate soccer athlete health, performance, and position monitoring dataset
+- **Dataset:** https://zenodo.org/records/10033832
+- **Research article:** https://www.nature.com/articles/s41597-024-03386-x
+
 ## Features
 
 The dashboard provides several ways to explore and compare athlete monitoring data.
